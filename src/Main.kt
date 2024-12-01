@@ -1,14 +1,52 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-fun main() {
-    val name = "Kotlin"
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    println("Hello, $name!")
+import java.io.File
+import java.io.InputStream
+import kotlin.math.absoluteValue
 
-    for (i in 1..5) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        println("i = $i")
+fun main() {
+    solveFirstPart()
+    solveSecondPart()
+}
+
+private fun solveSecondPart() {
+    val (leftList, rightList) = readInput()
+
+    var totalSimilarity = 0
+
+    for (number in leftList) {
+        val similarity = number * rightList.count { it == number }
+        totalSimilarity += similarity
     }
+
+    println("Total similarity: $totalSimilarity")
+}
+
+private fun solveFirstPart() {
+    val (leftList, rightList) = readInput()
+
+    leftList.sort()
+    rightList.sort()
+
+    var totalDistance = 0
+
+    for (i in 0..<leftList.size) {
+        val distance = (rightList[i] - leftList[i]).absoluteValue
+        totalDistance += distance
+    }
+
+    println("Total distance: $totalDistance")
+}
+
+private fun readInput(): Pair<MutableList<Int>, MutableList<Int>> {
+    val inputStream: InputStream = File("day-01.txt").inputStream()
+
+    val leftList = mutableListOf<Int>()
+    val rightList = mutableListOf<Int>()
+
+    inputStream.bufferedReader().forEachLine { line ->
+        val parts = line.split("\\s+".toRegex())
+        leftList.add(parts[0].toInt())
+        rightList.add(parts[1].toInt())
+    }
+
+    return Pair(leftList, rightList)
 }
