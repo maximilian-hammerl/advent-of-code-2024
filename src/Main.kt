@@ -10,12 +10,7 @@ fun main() {
 private fun solveSecondPart() {
     val (leftList, rightList) = readInput()
 
-    var totalSimilarity = 0
-
-    for (number in leftList) {
-        val similarity = number * rightList.count { it == number }
-        totalSimilarity += similarity
-    }
+    val totalSimilarity = leftList.sumOf { leftNumber -> leftNumber * rightList.count { it == leftNumber } }
 
     println("Total similarity: $totalSimilarity")
 }
@@ -26,12 +21,8 @@ private fun solveFirstPart() {
     leftList.sort()
     rightList.sort()
 
-    var totalDistance = 0
-
-    for (i in 0..<leftList.size) {
-        val distance = (rightList[i] - leftList[i]).absoluteValue
-        totalDistance += distance
-    }
+    val totalDistance =
+        leftList.withIndex().sumOf { (index, leftNumber) -> (rightList[index] - leftNumber).absoluteValue }
 
     println("Total distance: $totalDistance")
 }
