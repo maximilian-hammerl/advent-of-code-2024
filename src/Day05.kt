@@ -49,6 +49,10 @@ class Day05 : AdventOfCodeChallenge<Int, Int>(5) {
                 var hasRequiredReordering = false
 
                 while (true) {
+                    if (isInRightOrder(pages, rulesByPageNumbers)) {
+                        break
+                    }
+
                     for (i in pages.indices) {
                         if (i == 0) {
                             continue
@@ -77,10 +81,6 @@ class Day05 : AdventOfCodeChallenge<Int, Int>(5) {
                             hasRequiredReordering = true
                             break
                         }
-                    }
-
-                    if (isInRightOrder(pages, rulesByPageNumbers)) {
-                        break
                     }
                 }
 
