@@ -1,8 +1,10 @@
+import java.io.BufferedReader
+
 class Day07 : AdventOfCodeChallenge<Long, Long>(7) {
-    override fun solveFirstTask(): Long {
+    override fun solveFirstTask(input: BufferedReader): Long {
         var result: Long = 0
 
-        readInput().forEachLine { line ->
+        input.forEachLine { line ->
             val parts = line.split(": ")
             val expectedTestValue = parts[0].toLong()
             val numbers = parts[1].split(' ').map { it.toLong() }
@@ -34,10 +36,10 @@ class Day07 : AdventOfCodeChallenge<Long, Long>(7) {
         return result
     }
 
-    override fun solveSecondTask(): Long {
+    override fun solveSecondTask(input: BufferedReader): Long {
         var result: Long = 0
 
-        readInput().forEachLine { line ->
+        input.forEachLine { line ->
             val parts = line.split(": ")
             val expectedTestValue = parts[0].toLong()
             val numbers = parts[1].split(' ').map { it.toLong() }

@@ -1,9 +1,11 @@
+import java.io.BufferedReader
+
 class Day06 : AdventOfCodeChallenge<Int, Int>(6) {
     enum class Direction {
         NORTH, SOUTH, WEST, EAST
     }
 
-    override fun solveFirstTask(): Int {
+    override fun solveFirstTask(input: BufferedReader): Int {
         val grid = mutableListOf<List<Boolean>>()
 
         var currentPosition: Pair<Int, Int>? = null
@@ -11,7 +13,7 @@ class Day06 : AdventOfCodeChallenge<Int, Int>(6) {
 
         val uniquePositions = mutableSetOf<Pair<Int, Int>>()
 
-        readInput().forEachLine { line ->
+        input.forEachLine { line ->
             val row = mutableListOf<Boolean>()
 
             line.withIndex().forEach { (index, char) ->
@@ -106,13 +108,13 @@ class Day06 : AdventOfCodeChallenge<Int, Int>(6) {
         println("-----")
     }
 
-    override fun solveSecondTask(): Int {
+    override fun solveSecondTask(input: BufferedReader): Int {
         val grid = mutableListOf<MutableList<Boolean>>()
 
         var startingPosition: Pair<Int, Int>? = null
         var startingDirection: Direction? = null
 
-        readInput().forEachLine { line ->
+        input.forEachLine { line ->
             val row = mutableListOf<Boolean>()
 
             line.withIndex().forEach { (index, char) ->

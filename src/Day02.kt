@@ -1,8 +1,10 @@
+import java.io.BufferedReader
+
 class Day02 : AdventOfCodeChallenge<Int, Int>(2) {
-    override fun solveFirstTask(): Int {
+    override fun solveFirstTask(input: BufferedReader): Int {
         var numberSafeReports = 0
 
-        readInput().forEachLine { line ->
+        input.forEachLine { line ->
             val levels = line.split("\\s+".toRegex()).map { it.toInt() }
 
             val isSafeReport = isSafeReport(levels)
@@ -15,10 +17,10 @@ class Day02 : AdventOfCodeChallenge<Int, Int>(2) {
         return numberSafeReports
     }
 
-    override fun solveSecondTask(): Int {
+    override fun solveSecondTask(input: BufferedReader): Int {
         var numberSafeReports = 0
 
-        readInput().forEachLine { line ->
+        input.forEachLine { line ->
             val levels = line.split("\\s+".toRegex()).map { it.toInt() }
 
             val isSafeReport = isSafeReport(levels) || levels.indices.any { index ->

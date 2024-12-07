@@ -5,17 +5,24 @@ import kotlin.time.measureTimedValue
 
 abstract class AdventOfCodeChallenge<FirstTaskResult, SecondTaskResult>(
     private val day: Int,
+    private val separateInputForEachTask: Boolean = false,
 ) {
 
-    protected abstract fun solveFirstTask(): FirstTaskResult
+    protected abstract fun solveFirstTask(input: BufferedReader): FirstTaskResult
 
-    protected abstract fun solveSecondTask(): SecondTaskResult
+    protected abstract fun solveSecondTask(input: BufferedReader): SecondTaskResult
 
     private fun validateFirstTask(
         expectedFirstTaskResult: FirstTaskResult,
     ) {
+        val input = if (separateInputForEachTask) {
+            readInput(1)
+        } else {
+            readInput()
+        }
+
         val (actualFirstTaskResult, timeTaken) = measureTimedValue {
-            solveFirstTask()
+            solveFirstTask(input)
         }
 
         println("Day $day, task 1: $timeTaken")
@@ -24,8 +31,14 @@ abstract class AdventOfCodeChallenge<FirstTaskResult, SecondTaskResult>(
     }
 
     private fun validateSecondTask(expectedSecondTaskResult: SecondTaskResult) {
+        val input = if (separateInputForEachTask) {
+            readInput(2)
+        } else {
+            readInput()
+        }
+
         val (actualSecondTaskResult, timeTaken) = measureTimedValue {
-            solveSecondTask()
+            solveSecondTask(input)
         }
 
         println("Day $day, task 2: $timeTaken")
@@ -41,7 +54,7 @@ abstract class AdventOfCodeChallenge<FirstTaskResult, SecondTaskResult>(
         validateSecondTask(expectedSecondTaskResult)
     }
 
-    protected fun readInput(task: Int? = null): BufferedReader {
+    private fun readInput(task: Int? = null): BufferedReader {
         val formattedDay = String.format("%02d", day)
         var pathname = "day-$formattedDay"
 

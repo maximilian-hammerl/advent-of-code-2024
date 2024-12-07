@@ -1,12 +1,14 @@
+import java.io.BufferedReader
+
 class Day05 : AdventOfCodeChallenge<Int, Int>(5) {
-    override fun solveFirstTask(): Int {
+    override fun solveFirstTask(input: BufferedReader): Int {
         val rulesByPageNumbers = mutableMapOf<Int, MutableList<Int>>()
 
         var result = 0
 
         var isCollectingRules = true
 
-        readInput().forEachLine { line ->
+        input.forEachLine { line ->
             if (line == "") {
                 isCollectingRules = false
             } else if (isCollectingRules) {
@@ -27,14 +29,14 @@ class Day05 : AdventOfCodeChallenge<Int, Int>(5) {
         return result
     }
 
-    override fun solveSecondTask(): Int {
+    override fun solveSecondTask(input: BufferedReader): Int {
         val rulesByPageNumbers = mutableMapOf<Int, MutableList<Int>>()
 
         var result = 0
 
         var isCollectingRules = true
 
-        readInput().forEachLine { line ->
+        input.forEachLine { line ->
             if (line == "") {
                 isCollectingRules = false
             } else if (isCollectingRules) {

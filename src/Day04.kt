@@ -1,8 +1,10 @@
+import java.io.BufferedReader
+
 class Day04 : AdventOfCodeChallenge<Int, Int>(4) {
-    override fun solveFirstTask(): Int {
+    override fun solveFirstTask(input: BufferedReader): Int {
         val grid = mutableListOf<CharArray>()
 
-        readInput().forEachLine { line ->
+        input.forEachLine { line ->
             val row = line.toCharArray()
             grid.add(row)
         }
@@ -54,10 +56,10 @@ class Day04 : AdventOfCodeChallenge<Int, Int>(4) {
         return occurrences
     }
 
-    override fun solveSecondTask(): Int {
+    override fun solveSecondTask(input: BufferedReader): Int {
         val grid = mutableListOf<CharArray>()
 
-        readInput().forEachLine { line ->
+        input.forEachLine { line ->
             val row = line.toCharArray()
             grid.add(row)
         }
