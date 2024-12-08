@@ -4,7 +4,6 @@ class Day08 : AdventOfCodeChallenge<Int, Int>(8) {
     override fun solveFirstTask(input: BufferedReader): Int {
         val antennasByFrequencies = mutableMapOf<Char, MutableSet<Pair<Int, Int>>>()
 
-        var numberRows = 0
         var numberColumns = 0
 
         var currentRow = 0
@@ -19,7 +18,7 @@ class Day08 : AdventOfCodeChallenge<Int, Int>(8) {
             numberColumns = line.length
             currentRow++
         }
-        numberRows = currentRow
+        val numberRows = currentRow
 
         var numberAntinodes = 0
 
@@ -44,7 +43,6 @@ class Day08 : AdventOfCodeChallenge<Int, Int>(8) {
     override fun solveSecondTask(input: BufferedReader): Int {
         val antennasByFrequencies = mutableMapOf<Char, MutableSet<Pair<Int, Int>>>()
 
-        var numberRows = 0
         var numberColumns = 0
 
         var currentRow = 0
@@ -59,19 +57,17 @@ class Day08 : AdventOfCodeChallenge<Int, Int>(8) {
             numberColumns = line.length
             currentRow++
         }
-        numberRows = currentRow
+        val numberRows = currentRow
 
         var numberAntinodes = 0
 
         for (row in 0..<numberRows) {
             for (column in 0..<numberColumns) {
-                println("Checking $row,$column")
                 for (antennas in antennasByFrequencies.values) {
                     if (antennas.size <= 1) {
                         continue
                     }
 
-                    println("  Checking $antennas")
                     if (findAntinodeForSecondTask(Pair(row, column), antennas)) {
                         numberAntinodes++
                         break
