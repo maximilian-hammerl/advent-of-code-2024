@@ -6,4 +6,5 @@ fun main() {
     // Day05().validate(4905, 6204)
     // Day06().validate(4883, 1655)
     // Day07().validate(12839601725877, 149956401519484)
+    Day08().validate(252, 839)
 }
