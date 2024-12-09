@@ -11,7 +11,6 @@ class Day09 : AdventOfCodeChallenge<Long, Long>(9) {
 
         for (char in hardDrive) {
             if (isFile) {
-
                 addMultipleTimes(blocks, currentIdNumber, char.digitToInt())
                 currentIdNumber++
             } else {
