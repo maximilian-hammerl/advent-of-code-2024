@@ -3,8 +3,6 @@ import java.io.BufferedReader
 val DIRECTIONS = listOf(Pair(0, 1), Pair(1, 0), Pair(0, -1), Pair(-1, 0))
 
 class Day10 : AdventOfCodeChallenge<Int, Int>(10) {
-
-
     override fun solveFirstTask(input: BufferedReader): Int {
         val grid = mutableListOf<List<Int>>()
 
