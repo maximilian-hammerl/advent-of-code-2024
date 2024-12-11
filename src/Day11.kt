@@ -2,35 +2,29 @@ import java.io.BufferedReader
 
 class Day11 : AdventOfCodeChallenge<Int, Long>(11) {
     override fun solveFirstTask(input: BufferedReader): Int {
-        val stones = input.readLine().split(' ').map { it.toLong() }.toMutableList()
+        var stones = input.readLine().split(' ').map { it.toLong() }
 
         for (i in 0..<25) {
-            var j = 0
-            var numberStones = stones.size
+            val newStones = mutableListOf<Long>()
 
-            while (j < numberStones) {
-                val stone = stones[j]
-
+            for (stone in stones) {
                 if (stone == 0L) {
-                    stones[j] = 1L
-                    j++
+                    newStones.add(1)
                     continue
                 }
 
                 val stoneToString = stone.toString()
                 if (stoneToString.length % 2 == 0) {
                     val mid = stoneToString.length / 2
-                    stones[j] = stoneToString.substring(0, mid).toLong()
-                    stones.add(j + 1, stoneToString.substring(mid).toLong())
-
-                    j += 2
-                    numberStones++
+                    newStones.add(stoneToString.substring(0, mid).toLong())
+                    newStones.add(stoneToString.substring(mid).toLong())
                     continue
                 }
 
-                stones[j] = stone * 2024
-                j++
+                newStones.add(stone * 2024)
             }
+
+            stones = newStones
         }
 
         return stones.size
@@ -67,7 +61,7 @@ class Day11 : AdventOfCodeChallenge<Int, Long>(11) {
 
         cache[Pair(stone, times)] = sum
 
-        return sum;
+        return sum
     }
 
     private fun blink(stone: Long): List<Long> {
