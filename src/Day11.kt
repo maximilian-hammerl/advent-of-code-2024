@@ -5,26 +5,7 @@ class Day11 : AdventOfCodeChallenge<Int, Long>(11) {
         var stones = input.readLine().split(' ').map { it.toLong() }
 
         for (i in 0..<25) {
-            val newStones = mutableListOf<Long>()
-
-            for (stone in stones) {
-                if (stone == 0L) {
-                    newStones.add(1)
-                    continue
-                }
-
-                val stoneToString = stone.toString()
-                if (stoneToString.length % 2 == 0) {
-                    val mid = stoneToString.length / 2
-                    newStones.add(stoneToString.substring(0, mid).toLong())
-                    newStones.add(stoneToString.substring(mid).toLong())
-                    continue
-                }
-
-                newStones.add(stone * 2024)
-            }
-
-            stones = newStones
+            stones = stones.flatMap { s -> blink(s) }
         }
 
         return stones.size
