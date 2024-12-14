@@ -11,5 +11,6 @@ fun main() {
     // Day10().validate(538, 1110)
     // Day11().validate(212655, 253582809724830)
     // TODO: Day12().validate(1, 2)
-    Day14().validate(221616000, 7572)
+    // Day13().validate(33481, 92572057880885)
+    // Day14().validate(221616000, 7572)
 }

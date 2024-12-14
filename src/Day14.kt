@@ -6,17 +6,17 @@ class Day14 : AdventOfCodeChallenge<Int, Int>(14) {
     private var spaceHeight = 103
 
     override fun solveFirstTask(input: BufferedReader): Int {
+        val regex = Regex("""p=(-?\d+),(-?\d+) v=(-?\d+),(-?\d+)""")
+
         val robots = mutableListOf<Robot>()
 
         input.forEachLine { line ->
-            val split = line.split(' ')
-            val position = split[0].substring(2, split[0].length).split(',')
-            val velocity = split[1].substring(2, split[1].length).split(',')
-            robots.add(
-                Robot(
-                    Pair(position[0].toInt(), position[1].toInt()), Pair(velocity[0].toInt(), velocity[1].toInt())
-                )
-            )
+            val matchResult = regex.matchEntire(line) ?: throw Exception("Invalid line $line")
+            val (positionX, positionY, velocityX, velocityY) = matchResult.destructured
+
+            val position = Pair(positionX.toInt(), positionY.toInt())
+            val velocity = Pair(velocityX.toInt(), velocityY.toInt())
+            robots.add(Robot(position, velocity))
         }
 
         for (i in 0..<seconds) {
@@ -39,17 +39,17 @@ class Day14 : AdventOfCodeChallenge<Int, Int>(14) {
     }
 
     override fun solveSecondTask(input: BufferedReader): Int {
+        val regex = Regex("""p=(-?\d+),(-?\d+) v=(-?\d+),(-?\d+)""")
+
         val robots = mutableListOf<Robot>()
 
         input.forEachLine { line ->
-            val split = line.split(' ')
-            val position = split[0].substring(2, split[0].length).split(',')
-            val velocity = split[1].substring(2, split[1].length).split(',')
-            robots.add(
-                Robot(
-                    Pair(position[0].toInt(), position[1].toInt()), Pair(velocity[0].toInt(), velocity[1].toInt())
-                )
-            )
+            val matchResult = regex.matchEntire(line) ?: throw Exception("Invalid line $line")
+            val (positionX, positionY, velocityX, velocityY) = matchResult.destructured
+
+            val position = Pair(positionX.toInt(), positionY.toInt())
+            val velocity = Pair(velocityX.toInt(), velocityY.toInt())
+            robots.add(Robot(position, velocity))
         }
 
         var seconds = 0
