@@ -1,8 +1,8 @@
 import java.io.BufferedReader
 
-val DIRECTIONS = listOf(Pair(0, 1), Pair(1, 0), Pair(0, -1), Pair(-1, 0))
-
 class Day10 : AdventOfCodeChallenge<Int, Int>(10) {
+    private val directions = listOf(Pair(0, 1), Pair(1, 0), Pair(0, -1), Pair(-1, 0))
+
     override fun solveFirstTask(input: BufferedReader): Int {
         val grid = mutableListOf<List<Int>>()
 
@@ -36,7 +36,7 @@ class Day10 : AdventOfCodeChallenge<Int, Int>(10) {
         while (queue.isNotEmpty()) {
             val currentPosition = queue.removeFirst()
 
-            for (direction in DIRECTIONS) {
+            for (direction in directions) {
                 val nextPosition =
                     Pair(currentPosition.first + direction.first, currentPosition.second + direction.second)
 
@@ -116,7 +116,7 @@ class Day10 : AdventOfCodeChallenge<Int, Int>(10) {
             return
         }
 
-        for (direction in DIRECTIONS) {
+        for (direction in directions) {
             val nextPosition =
                 Pair(currentPosition.first + direction.first, currentPosition.second + direction.second)
 
